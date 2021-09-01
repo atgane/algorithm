@@ -8,7 +8,7 @@
 
 import heapq
 
-def Dijkstra_Algorithm(_graph, _V, _E, _start):
+def dijkstra_algorithm(_graph, _V, _E, _start):
     ans = [1e15 for _ in range(_V + 1)]
     ans[_start] = 0
     heap = [[0, _start]]

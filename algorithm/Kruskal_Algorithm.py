@@ -6,7 +6,7 @@
 # _graph[][2](float): 간선의 가중치
 # return: 최소신장트리 비용
 
-def Kruskal_Algorithm(_V, _E, _graph):
+def kruskal_algorithm(_V, _E, _graph):
     _graph = sorted(_graph, key=lambda x: x[2])
     parent_list = list(range(_V + 1))
     

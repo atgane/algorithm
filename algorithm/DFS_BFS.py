@@ -6,7 +6,7 @@
 
 from collections import deque
 
-def DFS(_data, _start):
+def dfs(_data, _start):
     visited = []
     stack = []
     stack.append(_start)
@@ -24,7 +24,7 @@ def DFS(_data, _start):
             break
     return visited
     
-def BFS(_data, _start):
+def bfs(_data, _start):
     visited = []
     queue = deque([])
     queue.append(_start)

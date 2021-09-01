@@ -1,0 +1,5 @@
+{
+    "board": "arduino:avr:uno",
+    "port": "COM4",
+    "sketch": "capstone\\printer_ard\\printer_ard.ino"
+}

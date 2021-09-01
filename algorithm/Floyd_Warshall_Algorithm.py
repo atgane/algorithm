@@ -6,7 +6,7 @@
 # _M(int): 간선 개수
 # return: 최단거리 행렬
 
-def Floyd_Warshall_Algorithm(_graph, _N, _M, _inf=1e15):
+def floyd_Warshall_algorithm(_graph, _N, _M, _inf=1e15):
     _matrix = [[0 if i == j else 1e12 for i in range(_N + 1)] for j in range(_N + 1)]
 
     for _node_data in _graph:
