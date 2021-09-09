@@ -126,17 +126,19 @@ def conv_ser_deque_to_img(ser_deque, img_shape):
     return ans_img
 
 if __name__ == "__main__":
-    img = cv2.imread('python/test1.png', cv2.IMREAD_GRAYSCALE)
+    img_file_name = 'input1'
+    
+    img = cv2.imread('capstone/' + img_file_name + '.png', cv2.IMREAD_GRAYSCALE)
     img = cv2.resize(img, (0, 0), fx=1, fy=1)
     _, img = cv2.threshold(img, 80, 255, cv2.THRESH_BINARY)
-    cv2.imwrite('python/test2.png', img)
+    cv2.imwrite('capstone/' + img_file_name + '_img_proc_v3.png', img)
     serial_deque = conv_img_to_ser_deque(img)
 
     for i in serial_deque:
         print(i, end=' ')
 
     conv_img = conv_ser_deque_to_img(serial_deque, img.shape)
-    cv2.imwrite('test2.png', conv_img)
+    cv2.imwrite('capstone/' + img_file_name + '_img_conv_v3.png', conv_img)
 
     n, m = img.shape
     for i in range(n):
