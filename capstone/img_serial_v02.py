@@ -137,4 +137,4 @@ if __name__ == "__main__":
     for i in range(n):
         for j in range(m):
             if img[i][j] != conv_img[i][j]:
-                print('False', i, j)
+                print('False', i, j, end=' ')

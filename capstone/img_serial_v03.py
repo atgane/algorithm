@@ -23,7 +23,7 @@ from collections import deque
 def conv_img_to_ser_deque(img):
     threshold_val = 255
     m, n = img.shape
-    ans_deque = deque()
+    tmp_deque = deque()
     col = 0
     for row in img:
         row_deque = deque(row)
@@ -36,22 +36,22 @@ def conv_img_to_ser_deque(img):
                     cnt += 1
                 elif tmp == 0:
                     if flag != -1:
-                        ans_deque.append(str(cnt))
-                        ans_deque.append('`')
-                    ans_deque.append('P')
-                    ans_deque.append('`')
-                    ans_deque.append('r')
+                        tmp_deque.append(str(cnt))
+                        tmp_deque.append('`')
+                    tmp_deque.append('P')
+                    tmp_deque.append('`')
+                    tmp_deque.append('r')
                     cnt = 1
                     flag = 0
                 elif tmp == threshold_val and flag == 1:
                     cnt += 1
                 elif tmp == threshold_val:
                     if flag != -1:
-                        ans_deque.append(str(cnt))
-                        ans_deque.append('`')
-                    ans_deque.append('p')
-                    ans_deque.append('`')
-                    ans_deque.append('r')
+                        tmp_deque.append(str(cnt))
+                        tmp_deque.append('`')
+                    tmp_deque.append('p')
+                    tmp_deque.append('`')
+                    tmp_deque.append('r')
                     cnt = 1
                     flag = 1
         else:
@@ -61,35 +61,51 @@ def conv_img_to_ser_deque(img):
                     cnt += 1
                 elif tmp == 0:
                     if flag != -1:
-                        ans_deque.append(str(cnt))
-                        ans_deque.append('`')
-                    ans_deque.append('P')
-                    ans_deque.append('`')
-                    ans_deque.append('l')
+                        tmp_deque.append(str(cnt))
+                        tmp_deque.append('`')
+                    tmp_deque.append('P')
+                    tmp_deque.append('`')
+                    tmp_deque.append('l')
                     cnt = 1
                     flag = 0
                 elif tmp == threshold_val and flag == 1:
                     cnt += 1
                 elif tmp == threshold_val:
                     if flag != -1:
-                        ans_deque.append(str(cnt))
-                        ans_deque.append('`')
-                    ans_deque.append('p')
-                    ans_deque.append('`')
-                    ans_deque.append('l')
+                        tmp_deque.append(str(cnt))
+                        tmp_deque.append('`')
+                    tmp_deque.append('p')
+                    tmp_deque.append('`')
+                    tmp_deque.append('l')
                     cnt = 1
                     flag = 1
         if cnt == n:
-            ans_deque.pop()
-            ans_deque.pop()
-            ans_deque.append('`')
+            tmp_deque.pop()
+            tmp_deque.pop()
+            tmp_deque.append('`')
         else:
-            ans_deque.append(str(cnt))
-            ans_deque.append('`')
+            tmp_deque.append(str(cnt))
+            tmp_deque.append('`')
             col += 1
-        ans_deque.append('d')
-        ans_deque.append('1')
-        ans_deque.append('`')
+        tmp_deque.append('d')
+        tmp_deque.append('1')
+        tmp_deque.append('`')
+    
+    ans_deque = deque()
+    while tmp_deque:
+        tmp = tmp_deque.popleft()
+        try:
+            if tmp == 'd' and tmp_deque[4] == 'd':
+                down_num = int(tmp_deque[0])
+                tmp_deque.popleft()
+                tmp_deque.popleft()
+                tmp_deque.popleft()
+                tmp_deque.popleft()
+                tmp_deque[1] = str(down_num + 1)
+            else:
+                ans_deque.append(tmp)
+        except:
+            ans_deque.append(tmp)
     return ans_deque
 
 def conv_ser_deque_to_img(ser_deque, img_shape):
@@ -126,10 +142,10 @@ def conv_ser_deque_to_img(ser_deque, img_shape):
     return ans_img
 
 if __name__ == "__main__":
-    img_file_name = 'input1'
+    img_file_name = 'input4'
     
     img = cv2.imread('capstone/' + img_file_name + '.png', cv2.IMREAD_GRAYSCALE)
-    img = cv2.resize(img, (0, 0), fx=1, fy=1)
+    img = cv2.resize(img, (0, 0), fx=2, fy=2)
     _, img = cv2.threshold(img, 80, 255, cv2.THRESH_BINARY)
     cv2.imwrite('capstone/' + img_file_name + '_img_proc_v3.png', img)
     serial_deque = conv_img_to_ser_deque(img)
