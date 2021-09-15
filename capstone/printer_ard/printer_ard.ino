@@ -1,6 +1,15 @@
 //d 1step: 0.24mm
 //r&l 1step: 0.32mm
 
+//X축 모터: A4988
+//0.17A, 3.67k옴
+
+//L모터: DRV8825
+//0.11A, 1.23k옴
+
+//R모터: DRV8825
+//0.16A, 1.198k옴
+
 #include<ctype.h>
 #include<stdlib.h>
 #define LIMIT_PIN 9
