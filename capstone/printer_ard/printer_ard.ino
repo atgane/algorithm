@@ -64,6 +64,11 @@ void loop()
             Serial.println(ser_data);
             dir_flag = 'd';
         }
+        else if (rec == 'u')
+        {
+            Serial.println(ser_data);
+            dir_flag = 'u';
+        }
         else if (rec == 'r')
         {
             Serial.println(ser_data);
@@ -91,7 +96,11 @@ void loop()
             
             if (dir_flag == 'd')
             {
-                ctrl_Y_motor(Y_DIR_PIN1, Y_DIR_PIN2, Y_STEP_PIN1, Y_STEP_PIN2, tmp);
+                ctrl_Y_motor_d(Y_DIR_PIN1, Y_DIR_PIN2, Y_STEP_PIN1, Y_STEP_PIN2, tmp);
+            }
+            else if (dir_flag == 'u')
+            {
+                ctrl_Y_motor_u(Y_DIR_PIN1, Y_DIR_PIN2, Y_STEP_PIN1, Y_STEP_PIN2, tmp);
             }
             else if (dir_flag == 'r')
             {
@@ -140,10 +149,25 @@ void ctrl_motor(int motor_dir_pin, int motor_step_pin, int motor_dir, int motor_
     }
 }
 
-void ctrl_Y_motor(int motor_dir_pin1, int motor_dir_pin2, int motor_step_pin1, int motor_step_pin2, int motor_step)
+void ctrl_Y_motor_d(int motor_dir_pin1, int motor_dir_pin2, int motor_step_pin1, int motor_step_pin2, int motor_step)
 {
     digitalWrite(motor_dir_pin1, HIGH);
     digitalWrite(motor_dir_pin2, LOW);
+    for(int i = 0; i < motor_step; ++i)
+    {
+        digitalWrite(motor_step_pin1, HIGH);
+        digitalWrite(motor_step_pin2, HIGH);
+        delayMicroseconds(MOTOR_DELAY * 2);
+        digitalWrite(motor_step_pin1, LOW);
+        digitalWrite(motor_step_pin2, LOW);
+        delayMicroseconds(MOTOR_DELAY * 2);
+    }
+}
+
+void ctrl_Y_motor_u(int motor_dir_pin1, int motor_dir_pin2, int motor_step_pin1, int motor_step_pin2, int motor_step)
+{
+    digitalWrite(motor_dir_pin1, LOW);
+    digitalWrite(motor_dir_pin2, HIGH);
     for(int i = 0; i < motor_step; ++i)
     {
         digitalWrite(motor_step_pin1, HIGH);
