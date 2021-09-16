@@ -144,7 +144,7 @@ def interact_ser(_str, _ard):
 if __name__ == "__main__":
     port = 'COM4'  # 변동가능
     ard = serial.Serial(port, 9600)
-    time.sleep(3)
+    time.sleep(2)
 
     for i in serial_deque:
         if list(pyautogui.position()) != [0, 0]:
