@@ -142,7 +142,7 @@ def conv_ser_deque_to_img(ser_deque, img_shape):
     return ans_img
 
 if __name__ == "__main__":
-    img_file_name = 'input5'
+    img_file_name = 'input6'
     
     img = cv2.imread('capstone/' + img_file_name + '.png', cv2.IMREAD_GRAYSCALE)
     img = cv2.resize(img, (0, 0), fx=1, fy=1)

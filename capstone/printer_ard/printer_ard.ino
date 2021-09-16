@@ -60,7 +60,7 @@ void loop()
         {
             Serial.println(ser_data);
             digitalWrite(SOLENOID_PIN, HIGH);
-            delay(70);
+            delay(100);
         }
         else if (rec == 'P')
         {
@@ -101,7 +101,7 @@ void loop()
         }
         else if (rec == '`')
         {
-            int tmp = atoi(num_repos);
+            int tmp = atoi(num_repos) * 5;
             
             if (dir_flag == 'd')
             {
