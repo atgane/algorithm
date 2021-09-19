@@ -142,7 +142,7 @@ def interact_ser(_str, _ard):
     print(tmp.decode())
     
 if __name__ == "__main__":
-    port = 'COM4'  # 변동가능
+    port = 'COM10'  # 변동가능
     ard = serial.Serial(port, 9600)
     time.sleep(2)
 

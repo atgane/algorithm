@@ -29,7 +29,7 @@ char num_repos[MAX_REPOS];
 int num_repos_iter = 0;
 char dir_flag = '\0';
 
-const int MOTOR_DELAY = 500;
+const int MOTOR_DELAY = 1000;
 
 String ser_data = "";
 
@@ -101,7 +101,7 @@ void loop()
         }
         else if (rec == '`')
         {
-            int tmp = atoi(num_repos) * 5;
+            int tmp = atoi(num_repos) * 3;
             
             if (dir_flag == 'd')
             {
