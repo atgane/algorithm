@@ -1,5 +1,6 @@
 {
-    "board": "arduino:avr:uno",
-    "port": "COM10",
-    "sketch": "capstone\\printer_ard\\printer_ard.ino"
+    "board": "arduino:avr:mega",
+    "port": "COM11",
+    "sketch": "..\\capstone\\echoback\\echoback.ino",
+    "configuration": "cpu=atmega2560"
 }
