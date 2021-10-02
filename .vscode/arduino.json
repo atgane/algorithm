@@ -1,6 +1,0 @@
-{
-    "board": "arduino:avr:mega",
-    "port": "COM11",
-    "sketch": "..\\capstone\\echoback\\echoback.ino",
-    "configuration": "cpu=atmega2560"
-}
