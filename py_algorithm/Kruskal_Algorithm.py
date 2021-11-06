@@ -10,11 +10,12 @@ def kruskal_algorithm(_V, _E, _graph):
     _graph = sorted(_graph, key=lambda x: x[2])
     parent_list = list(range(_V + 1))
     
-    def find_parent(_node, _parent_list):
-        if _parent_list[_node] != _node:
-            return find_parent(_parent_list[_node], _parent_list)
+    def find_parent(_node, _arr):
+        if _arr[_node] != _node:
+            _arr[_node] = find_parent(_arr[_node], _arr)
+            return _arr[_node]
         return _node
-
+        
     def union(_node1, _node2, _parent_list):
         _root1 = find_parent(_node1, _parent_list)
         _root2 = find_parent(_node2, _parent_list)
