@@ -1,3 +1,5 @@
+# 백준 3584
+
 import sys
 from collections import deque
 ssr = sys.stdin.readline
