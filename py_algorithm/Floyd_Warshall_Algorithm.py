@@ -7,7 +7,7 @@
 # return: 최단거리 행렬
 
 def floyd_Warshall_algorithm(_graph, _N, _M, _inf=1e15):
-    _matrix = [[0 if i == j else 1e12 for i in range(_N + 1)] for j in range(_N + 1)]
+    _matrix = [[0 if i == j else _inf for i in range(_N + 1)] for j in range(_N + 1)]
 
     for _node_data in _graph:
         _matrix[_node_data[0]][_node_data[1]] = min(_node_data[2], _matrix[_node_data[0]][_node_data[1]])

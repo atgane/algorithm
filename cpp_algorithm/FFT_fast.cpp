@@ -3,6 +3,7 @@
 #include<vector>
 #include<cmath>
 #include<algorithm>
+#include<cmath>
 
 using namespace std;
 
@@ -28,16 +29,17 @@ void FFT(vector<cpx> &x, bool inv)
     {
         int n = 1 << i;
         cpx w;
-        if(inv) w = cpx(cos(2 * PI / n), sin(2 * PI / n));
-        else w = cpx(cos(2 * PI / n), -sin(2 * PI / n));
+        double c = 2 * PI / n;
+        if(inv) w = cpx(cos(c), sin(c));
+        else w = cpx(cos(c), -sin(c));
         for(int j = 0; j < l; j += n)
         {
             cpx wp = cpx(1, 0);
             for(int k = j; k < j + n / 2; ++k)
             {
-                cpx tmp = x[k];
-                x[k] = tmp + wp * x[k + n / 2];
-                x[k + n / 2] = tmp - wp * x[k + n / 2];
+                cpx even = x[k], odd = x[k + n / 2];
+                x[k] = even + wp * odd;
+                x[k + n / 2] = even - wp * odd;
                 wp *= w;
             }
         }
@@ -67,17 +69,7 @@ vector<cpx> conv(vector<cpx> _arr1, vector<cpx> _arr2)
     FFT(_ans, true);
     for(int i = 0; i < _N; ++i)
     {
-        _ans[i] /= cpx(_N, 0);
         _ans[i] = cpx(round(_ans[i].real()), round(_ans[i].imag()));
     }
     return _ans;
-}
-
-int main()
-{
-    int N = 32;
-    vector<cpx>a(N);
-    for(int i = 0; i < N; ++i) a[i] = cpx(i, 0);
-    FFT(a, false);
-    cout << 1;
 }
