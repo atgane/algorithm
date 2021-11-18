@@ -3,9 +3,6 @@
 import sys
 ssr = sys.stdin.readline
 
-from itertools import permutations
-import copy
-
 graph = [list(map(int, ssr().split())) for _ in range(10)]
 ans = 26
 table = [0, 5, 5, 5, 5, 5]

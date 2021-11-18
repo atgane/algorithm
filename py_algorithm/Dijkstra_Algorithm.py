@@ -14,6 +14,8 @@ def dijkstra_algorithm(_graph, _V, _E, _start, INF=1e15):
     heap = [[0, _start]]
     while heap:
         datum_weight, datum_node = heapq.heappop(heap)
+        if ans[datum_node] < datum_weight:
+            continue
         for tmp_node, tmp_weight in _graph[datum_node]:
             new_weight = tmp_weight + datum_weight
             if new_weight < ans[tmp_node]:
