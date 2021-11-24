@@ -1,3 +1,6 @@
+# _txt(str): 패턴을 찾을 text
+# _pat(str): text에서 찾을 패턴
+
 def computeLPS(_pat, _lps):
     _length = 0
     _N = len(_pat)
